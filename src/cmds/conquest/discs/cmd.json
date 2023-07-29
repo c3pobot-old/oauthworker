@@ -1,0 +1,47 @@
+{
+  "type": 1,
+  "name": "discs",
+  "description": "Show conquest discs (requires google/fb link)",
+  "options": [
+    {
+      "type": 4,
+      "name": "option",
+      "description": "what discs to show (defaults to all)",
+      "choices": [
+        {
+          "name": "all",
+          "value": 1
+        },
+        {
+          "name": "equipped",
+          "value": 2
+        },
+        {
+          "name": "unequipped",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "type": 5,
+      "name": "cache",
+      "description": "pull data from cache or game (default is false, pulls from game)"
+    },
+    {
+      "type": 3,
+      "name": "allycode_option",
+      "description": "primary or alt allycode",
+      "required": false,
+      "choices": [
+        {
+          "name": "Primary",
+          "value": "primary"
+        },
+        {
+          "name": "Alt",
+          "value": "alt"
+        }
+      ]
+    }
+  ]
+}

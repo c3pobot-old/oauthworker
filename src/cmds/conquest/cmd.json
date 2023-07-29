@@ -1,0 +1,8 @@
+{
+  "type": "public",
+  "cmd": {
+    "name": "conquest",
+    "description": "Show conquest info (requires google/fb link)",
+    "options": []
+  }
+}

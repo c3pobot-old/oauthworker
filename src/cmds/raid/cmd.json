@@ -1,0 +1,75 @@
+{
+  "type": "public",
+  "cmd": {
+    "name": "raid",
+    "description": "Show current raid status (requires google link)",
+    "options": [
+      {
+        "type": 1,
+        "name": "status",
+        "description": "Show current raid status (requires google link)",
+        "options": [
+          {
+            "type": 3,
+            "name": "allycode_option",
+            "description": "primary or alt allycode",
+            "required": false,
+            "choices": [
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Alt",
+                "value": "alt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": 1,
+        "name": "history",
+        "description": "Show raid history for the guild",
+        "options": [
+          {
+              "type": 3,
+              "name": "raid",
+              "description": "Raid name (defaults to last run raid)",
+              "required": false,
+              "autocomplete": true,
+              "focused": true
+          },
+          {
+            "type": 6,
+            "name": "user",
+            "description": "@user to lookup",
+            "required": false
+          },
+          {
+            "type": 3,
+            "name": "allycode",
+            "description": "allyCode to lookup",
+            "required": false
+          },
+          {
+            "type": 3,
+            "name": "allycode_option",
+            "description": "primary or alt allycode",
+            "required": false,
+            "choices": [
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Alt",
+                "value": "alt"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

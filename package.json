@@ -1,0 +1,40 @@
+{
+  "name": "oauthworker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update": "chmod a+x updategitdependency.sh && ./updategitdependency.sh",
+    "build": "chmod a+x buildtestimage.sh && ./buildtestimage.sh c3pobot-old/oauthworker",
+    "prod": "chmod a+x buildprodimage.sh && ./buildprodimage.sh c3pobot-old/oauthworker"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/c3po-shard/oauthworker.git"
+  },
+  "author": "scuba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/c3po-shard/oauthworker/issues"
+  },
+  "homepage": "https://gitlab.com/c3po-shard/oauthworker#readme",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "bottleneck": "^2.19.5",
+    "cmd2array": "github:c3pobot-old/cmd2array",
+    "dbwrapper": "github:c3pobot-old/dbwrapper",
+    "discordhelper": "github:c3pobot-old/discordhelper",
+    "discordmsg": "github:c3pobot-old/discordmsg",
+    "express": "^4.18.1",
+    "json-array-sorter": "0.0.5",
+    "json2xls": "^0.1.2",
+    "node-fetch": "^2.6.7",
+    "numeral": "^2.0.6",
+    "quewrapper": "github:c3pobot-old/quewrapper",
+    "stub": "github:c3pobot-old/stub",
+    "swgohformatter": "github:c3pobot-old/swgohformatter",
+    "swgohhelper": "github:c3pobot-old/swgohhelper",
+    "webimg": "github:c3pobot-old/webimg"
+  }
+}

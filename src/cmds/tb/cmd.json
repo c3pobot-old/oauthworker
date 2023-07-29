@@ -1,0 +1,296 @@
+{
+  "type": "public",
+  "cmd": {
+    "name": "tb",
+    "description": "tb info",
+    "options": [
+      {
+        "type": 1,
+        "name": "platoons-export",
+        "description": "export platoon requirements to excel file (RotE only right now)",
+        "options": [
+          {
+            "type": 4,
+            "name": "relic",
+            "description": "max relic level for platoons (defaults to 9)"
+          },
+          {
+            "type": 5,
+            "name": "roster",
+            "description": "include guild member unit status (defaults to true)"
+          },
+          {
+            "type": 3,
+            "name": "allycode_option",
+            "description": "primary or alt allycode",
+            "required": false,
+            "choices": [
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Alt",
+                "value": "alt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": 1,
+        "name": "platoons-cache",
+        "description": "clear platoon cached data"
+      },
+      {
+        "type": 1,
+        "name": "my-platoons",
+        "description": "Show my tb platoons (requires web site configured mapping)",
+        "options": [
+          {
+            "type": 3,
+            "name": "allycode_option",
+            "description": "primary or alt allycode",
+            "required": false,
+            "choices": [
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Alt",
+                "value": "alt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": 1,
+        "name": "platoons",
+        "description": "Check tb Platoon filling",
+        "options": [
+          {
+            "type": 3,
+            "name": "tb-name",
+            "description": "tb to look up (Default is Rise of the Empire)",
+            "autocomplete": true,
+            "focused": true
+          },
+          {
+            "type": 3,
+            "name": "phase",
+            "description": "tb phase to check (default is all)",
+            "choices": [
+              {
+                "name": "P1",
+                "value": "P1"
+              },
+              {
+                "name": "P2",
+                "value": "P2"
+              },
+              {
+                "name": "P3",
+                "value": "P3"
+              },
+              {
+                "name": "P4",
+                "value": "P4"
+              },
+              {
+                "name": "P5",
+                "value": "P5"
+              },
+              {
+                "name": "P6",
+                "value": "P6"
+              }
+            ]
+          },
+          {
+            "type": 3,
+            "name": "conflict",
+            "description": "tb conflict/section to check (default is all)",
+            "choices": [
+              {
+                "name": "C1",
+                "value": "C1"
+              },
+              {
+                "name": "C2",
+                "value": "C2"
+              },
+              {
+                "name": "C3",
+                "value": "C3"
+              }
+            ]
+          },
+          {
+            "type": 5,
+            "name": "fill_squad",
+            "description": "require squad to be full to show assignement (default is true)"
+          }
+        ]
+      },
+      {
+        "type": 2,
+        "name": "info",
+        "description": "Basic info about Territory battle",
+        "options": [
+          {
+            "type": 1,
+            "name": "points",
+            "description": "points for each star level",
+            "options": [
+              {
+                "type": 3,
+                "name": "tb-name",
+                "description": "tb to look up (Default is Rise of the Empire)",
+                "autocomplete": true,
+                "focused": true
+              }
+            ]
+          },
+          {
+            "type": 1,
+            "name": "combat-mission",
+            "description": "points for combat missions",
+            "options": [
+              {
+                "type": 3,
+                "name": "tb-name",
+                "description": "tb to look up (Default is Rise of the Empire)",
+                "autocomplete": true,
+                "focused": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": 1,
+        "name": "status",
+        "description": "(requires google/fb link) Pulls current Territory Battle stats",
+        "options": [
+          {
+            "type": 3,
+            "name": "allycode_option",
+            "description": "primary or alt allycode",
+            "required": false,
+            "choices": [
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Alt",
+                "value": "alt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": 2,
+        "name": "gp",
+        "description": "TB GP info",
+        "options": [
+          {
+            "type": 1,
+            "name": "char",
+            "description": "(requires google/fb link) Reports if player char GP is less than deployed GP",
+            "options": [
+              {
+                "type": 3,
+                "name": "allycode_option",
+                "description": "primary or alt allycode",
+                "required": false,
+                "choices": [
+                  {
+                    "name": "Primary",
+                    "value": "primary"
+                  },
+                  {
+                    "name": "Alt",
+                    "value": "alt"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": 1,
+            "name": "low",
+            "description": "(requires google/fb link) Reports if player deployed GP is less than 2mil",
+            "options": [
+              {
+                "type": 3,
+                "name": "allycode_option",
+                "description": "primary or alt allycode",
+                "required": false,
+                "choices": [
+                  {
+                    "name": "Primary",
+                    "value": "primary"
+                  },
+                  {
+                    "name": "Alt",
+                    "value": "alt"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": 1,
+            "name": "total",
+            "description": "(requires google/fb link) Reports if player total GP is less than deployed GP",
+            "options": [
+              {
+                "type": 3,
+                "name": "allycode_option",
+                "description": "primary or alt allycode",
+                "required": false,
+                "choices": [
+                  {
+                    "name": "Primary",
+                    "value": "primary"
+                  },
+                  {
+                    "name": "Alt",
+                    "value": "alt"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": 1,
+        "name": "watch",
+        "description": "(requires synced guild) runs tb status command 15 mins before phase switch",
+        "options": [
+          {
+            "type": 3,
+            "name": "allycode_option",
+            "description": "primary or alt allycode",
+            "required": false,
+            "choices": [
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Alt",
+                "value": "alt"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

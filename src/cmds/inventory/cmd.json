@@ -1,0 +1,94 @@
+{
+  "type": "public",
+  "cmd": {
+    "name": "inventory",
+    "description": "Show Player inventory (requires google link)",
+    "options": [
+      {
+        "type": 1,
+        "name": "unit",
+        "description": "Check inventory for mats needed for unit (requires google link)",
+        "options": [
+          {
+            "type": 3,
+            "name": "unit",
+            "description": "unit to check",
+            "required": true,
+            "autocomplete": true,
+            "focused": true
+          },
+          {
+              "type": 3,
+              "name": "gear",
+              "description": "Gear or Relic for comparison",
+              "required": false,
+              "choices": [
+                  {
+                      "name": "Relic",
+                      "value": "r"
+                  },
+                  {
+                      "name": "Gear",
+                      "value": "g"
+                  }
+              ]
+          },
+          {
+              "type": 4,
+              "name": "value",
+              "description": "gear or relic value",
+              "required": false,
+              "min_value": 1
+          },
+          {
+            "type": 3,
+            "name": "allycode_option",
+            "description": "primary or alt allycode",
+            "required": false,
+            "choices": [
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Alt",
+                "value": "alt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": 1,
+        "name": "journey",
+        "description": "Check inventory for mats needed for journey guide readiness (requires google link)",
+        "options": [
+          {
+            "type": 3,
+            "name": "journey",
+            "description": "journey guide unit",
+            "required": true,
+            "autocomplete": true,
+            "focused": true
+          },
+          {
+            "type": 3,
+            "name": "allycode_option",
+            "description": "primary or alt allycode",
+            "required": false,
+            "choices": [
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Alt",
+                "value": "alt"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

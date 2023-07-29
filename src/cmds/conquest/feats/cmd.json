@@ -1,0 +1,28 @@
+{
+  "type": 1,
+  "name": "feats",
+  "description": "Show conquest feats (requires google/fb link)",
+  "options": [
+    {
+      "type": 5,
+      "name": "cache",
+      "description": "pull data from cache or game (default is false, pulls from game)"
+    },
+    {
+      "type": 3,
+      "name": "allycode_option",
+      "description": "primary or alt allycode",
+      "required": false,
+      "choices": [
+        {
+          "name": "Primary",
+          "value": "primary"
+        },
+        {
+          "name": "Alt",
+          "value": "alt"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "home-guild",
+  "cmd": {
+    "name": "bronzium",
+    "description": "open multiple Bronzium Data Cards (default 100)",
+    "options": [
+      {
+        "type": 4,
+        "name": "quantity",
+        "description": "number of packs to open (default 100)"
+      },
+      {
+        "type": 3,
+        "name": "allycode_option",
+        "description": "primary or alt allycode",
+        "required": false,
+        "choices": [
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Alt",
+            "value": "alt"
+          }
+        ]
+      }
+    ]
+  }
+}
