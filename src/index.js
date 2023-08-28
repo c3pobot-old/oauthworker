@@ -1,128 +1,68 @@
 'use strict'
+const log = require('logger')
 if(!process.env.CMD_QUE_NAME) process.env.CMD_QUE_NAME = 'oauth'
 require('src/globals')
-require('src/expressServer')
-const QueWrapper = require('quewrapper')
+//require('src/expressServer')
+const CmdQue = require('./cmdQue')
 const SaveSlashCmds = require('cmd2array')
+const UpdateBotSettings = require('./services/updateBotSettings')
+const CreateCmdMap = require('./services/createCmdMap')
+const UpdateGameData = require('./services/updateGameData')
 
-const cmdQueOpts = {
-  queName: process.env.CMD_QUE_NAME || 'oauth',
-  numJobs: +process.env.NUM_JOBS || 1,
-  queOptions: {
-    redis: {
-      host: process.env.REDIS_SERVER,
-  		port: +process.env.REDIS_PORT,
-  		password: process.env.REDIS_PASS
-    }
-  },
-  localQue: redis,
-  localQueKey: process.env.LOCAL_QUE_KEY
+const CheckRedis = ()=>{
+  let status = redis.status()
+  if(status){
+    CheckMongo()
+    return
+  }
+  setTimeout(CheckRedis, 5000)
 }
-if(process.env.PRIVATE_WORKER) cmdQueOpts.queName += 'Private'
-const CmdQue = new QueWrapper(cmdQueOpts)
-const InitRedis = async()=>{
+const CheckMongo = ()=>{
+  let status = mongo.status()
+  if(status){
+    CheckApi()
+    return
+  }
+  setTimeout(CheckRedis, 5000)
+}
+const CheckApi = async()=>{
   try{
-    await redis.init()
-    const redisStatus = await redis.ping()
-    if(redisStatus == 'PONG'){
-      console.log('redis connection successful...')
-      CheckMongo()
-    }else{
-      console.log('redis connection error. Will try again in 5 seconds...')
-      setTimeout(InitRedis, 5000)
+    let obj = await Client.post('metadata')
+    if(obj?.latestGamedataVersion){
+      CheckGameData()
+      return
     }
+    setTimeout(CheckApi, 5000)
   }catch(e){
-    console.error('redis connection error. Will try again in 5 seconds...')
-    setTimeout(InitRedis, 5000)
+    log.error(e)
+    setTimeout(CheckApi, 5000)
   }
 }
-
-const CheckMongo = async()=>{
+const CheckGameData = async()=>{
   try{
-    const status = await mongo.init();
-    if(status > 0){
-      console.log('Mongo connection successful...')
-      StartServices()
-    }else{
-      console.error('Mongo connection error. Will try again in 5 seconds')
-      setTimeout(CheckMongo, 5000)
+    let status = await UpdateGameData()
+    if(status){
+      CheckCmdMap()
+      return
     }
   }catch(e){
-    console.error('Mongo connection error. Will try again in 5 seconds')
-    setTimeout(CheckMongo, 5000)
+    log.error(e)
+    setTimeout(CheckGameData, 5000)
   }
 }
-//
-const StartServices = async()=>{
+const CheckCmdMap = async()=>{
   try{
     if(process.env.POD_NAME?.toString().endsWith("0")) await SaveSlashCmds(baseDir+'/src/cmds', 'oauth')
-    await CreateCmdMap()
-    await UpdateBotSettings()
-    CheckAPIReady()
-    StartQue()
-  }catch(e){
-    console.error(e);
-    setTimeout(StartServices, 5000)
-  }
-}
-
-const CreateCmdMap = async()=>{
-  try{
-    const obj = (await mongo.find('slashCmds', {_id: 'oauth'}))[0]
-    if(obj?.cmdMap) CmdMap = obj.cmdMap
-    setTimeout(CreateCmdMap, 60000)
-  }catch(e){
-    console.error(e);
-    setTimeout(CreateCmdMap, 5000)
-  }
-}
-const CheckAPIReady = async()=>{
-  const obj = await Client.post('metadata')
-  if(obj?.latestGamedataVersion){
-    console.log('API is ready ..')
-    UpdateGameData()
-  }else{
-    console.log('API is not ready. Will try again in 5 seconds')
-    setTimeout(()=>CheckAPIReady(), 5000)
-  }
-}
-
-const UpdateGameData = async()=>{
-  try{
-    const obj = (await mongo.find('botSettings', {_id: 'gameData'}))[0]
-    if(obj?.version !== gameVersion && obj?.data){
-      console.log('Setting new gameData to '+obj.version)
-      gameVersion = obj.version;
-      gameData = obj.data
-      HP.UpdateUnitsList()
-      gameDataReady = 1
-    }
-    setTimeout(UpdateGameData, 5000)
-  }catch(e){
-    console.log(e)
-    setTimeout(UpdateGameData, 5000)
-  }
-}
-const UpdateBotSettings = async()=>{
-  try{
-    const obj = (await mongo.find('botSettings', {_id: "1"}))[0]
-    if(obj) botSettings = obj
-    setTimeout(UpdateBotSettings, 60000)
-  }catch(e){
-    setTimeout(UpdateBotSettings, 5000)
-    console.error(e)
-  }
-}
-const StartQue = ()=>{
-  try{
-    if(gameDataReady && CmdMap){
+    let status = await CreateCmdMap()
+    if(status){
+      await UpdateBotSettings()
       CmdQue.start()
-    }else{
-      setTimeout(StartQue, 5000)
+      return
     }
+    setTimeout(CheckCmdMap, 5000)
   }catch(e){
-    console.error(e);
-    setTimeout(StartQue, 5000)
+    log.error(e)
+    setTimeout(CheckCmdMap, 5000)
   }
 }
-InitRedis()
+CheckRedis()

@@ -13,5 +13,5 @@ testcontainer="${registry}/${tag}:test"
 echo building $testcontainer
 docker build -t $testcontainer .
 docker push $testcontainer
-docker tag $testcontainer "registry.gitlab.com/${tag}:latest"
-docker push "registry.gitlab.com/${tag}:latest"
+docker tag $testcontainer "ghcr.io/${tag}:latest"
+docker push "ghcr.io/${tag}:latest"
