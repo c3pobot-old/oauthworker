@@ -29,6 +29,29 @@
       },
       {
         "type": 1,
+        "name": "preload",
+        "description": "Checks who preloaded a battle (requires google/fb link)",
+        "options": [
+          {
+            "type": 3,
+            "name": "allycode_option",
+            "description": "primary or alt allycode",
+            "required": false,
+            "choices": [
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Alt",
+                "value": "alt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": 1,
         "name": "stats",
         "description": "Show graphs of banners and rogue actions (requires google link)",
         "options": [

@@ -6,6 +6,7 @@ Cmds.omicron = require('./omicron')
 Cmds.report = require('./report')
 Cmds['report-units'] = HP.ManageReportUnits
 Cmds.member = require('./member')
+Cmds.preload = require('./preload')
 Cmds.status = require('./status')
 Cmds.stats = require('./stats')
 module.exports = async(obj)=>{

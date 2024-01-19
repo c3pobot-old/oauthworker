@@ -2,6 +2,9 @@
 const FormatItems = require('./formatItems')
 module.exports = async(obj = {})=>{
   try{
+    //await HP.ReplyMsg(obj, {content: 'For reasons this command is temporarily disabled'})
+    //return
+
     let qty = 100, loginConfirm, msg2send = {content: 'You do not have google or fb linked'}, opt = [], identity, pObj, tObj, socialTotal = 0, timeNow = Date.now()
     if(obj?.data?.options) opt = obj.data.options
     if(obj?.confirm){
@@ -105,6 +108,7 @@ module.exports = async(obj = {})=>{
     }else{
       HP.ReplyMsg(obj, msg2send)
     }
+    
   }catch(e){
     console.error(e)
     HP.ReplyError(obj)
